@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Тест: {{ test.title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    {% if test.timer_enabled %}
+    <div class="timer" id="timer" data-seconds="{{ test.timer_seconds }}">
+      {{ test.timer_seconds // 60 }}:{{ "%02d" % (test.timer_seconds % 60) }}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('main.submit_test', test_id=test.id) }}">
+      {% for question in test.questions %}
+      <div class="question">
+        <h3>{{ question.text }}</h3>
+        {% for key, option in question.options.items() %}
+        <label>
+          <input type="radio" name="q_{{ question.id }}" value="{{ key }}" required>
+          {{ option }}
+        </label>
+        {% endfor %}
+      </div>
+      {% endfor %}
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+
+  {% if test.timer_enabled %}
+  <script src="{{ url_for('static', filename='js/timer.js') }}"></script>
+  {% endif %}
+</body>
+
+</html>

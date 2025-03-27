@@ -1,0 +1,23 @@
+{% extends "admin/master.html" %}
+
+{% block title %}
+Главная | Админ-панель
+{% endblock %}
+
+{% block content %}
+<h2>Статистика</h2>
+<div class="stats">
+    <div class="stat-card">
+        <h3>Пользователи</h3>
+        <p>{{ users_count }}</p>
+    </div>
+    <div class="stat-card">
+        <h3>Тесты</h3>
+        <p>{{ tests_count }}</p>
+    </div>
+    <div class="stat-card">
+        <h3>Результаты</h3>
+        <p>{{ results_count }}</p>
+    </div>
+</div>
+{% endblock %}

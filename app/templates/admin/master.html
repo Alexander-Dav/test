@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}Админ-панель{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Панель администратора</h1>
+            <nav>
+                <a href="{{ url_for('admin.index') }}">Главная</a>
+                <a href="{{ url_for('admin.user_view') }}">Пользователи</a>
+                <a href="{{ url_for('admin.test_view') }}">Тесты</a>
+                <a href="{{ url_for('auth.logout') }}">Выйти</a>
+            </nav>
+        </header>
+
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>
